@@ -4,7 +4,7 @@ import 'izitoast/dist/css/iziToast.min.css';
 const form = document.querySelector('.form');
 const radio = document.querySelector('fieldset');
 
-let text;
+let selectedState;
 
 form.addEventListener('submit', handleSubmit);
 radio.addEventListener('change', handleRadioChange);
@@ -12,7 +12,7 @@ radio.addEventListener('change', handleRadioChange);
 function handleSubmit(event) {
   event.preventDefault();
   const delay = form.elements.delay.value;
-  const prom = creatPromis(delay, text);
+  const prom = creatPromis(delay, selectedState);
   prom.then(success).catch(notSuccess);
   form.reset();
   return delay;
@@ -20,8 +20,8 @@ function handleSubmit(event) {
 
 function handleRadioChange(event) {
   const b = event.target;
-  text = b.value;
-  return text;
+  selectedState = b.value;
+  return selectedState;
 }
 
 function notSuccess(delay) {
