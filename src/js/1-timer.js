@@ -61,22 +61,20 @@ function convertMs(ms) {
   const day = hour * 24;
 
   // Remaining days
-  textDays.textContent = Math.floor(ms / day)
-    .toString()
-    .padStart(2, '0');
+  const days = Math.floor(ms / day);
   // Remaining hours
-  textHours.textContent = Math.floor((ms % day) / hour)
-    .toString()
-    .padStart(2, '0');
+  const hours = Math.floor((ms % day) / hour);
   // Remaining minutes
-  textMinutes.textContent = Math.floor(((ms % day) % hour) / minute)
-    .toString()
-    .padStart(2, '0');
+  const minutes = Math.floor(((ms % day) % hour) / minute);
   // Remaining seconds
-  textSeconds.textContent = Math.floor((((ms % day) % hour) % minute) / second)
-    .toString()
-    .padStart(2, '0');
+  const seconds = Math.floor((((ms % day) % hour) % minute) / second);
+
+  return { days, hours, minutes, seconds };
 }
+
+console.log(convertMs(2000)); // {days: 0, hours: 0, minutes: 0, seconds: 2}
+console.log(convertMs(140000)); // {days: 0, hours: 0, minutes: 2, seconds: 20}
+console.log(convertMs(24140000)); // {days: 0, hours: 6 minutes: 42, seconds: 20}
 
 button.addEventListener('click', () => {
   button.disabled = true;
