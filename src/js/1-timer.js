@@ -47,8 +47,13 @@ function clear() {
 function getDate() {
   const nowDate = userSelectedDate - new Date();
   if (nowDate < 0) return;
-  convertMs(nowDate);
-  console.log(nowDate);
+
+  const { days, hours, minutes, seconds } = convertMs(nowDate);
+
+  textDays.textContent = days.toString().padStart(2, '0');
+  textHours.textContent = hours.toString().padStart(2, '0');
+  textMinutes.textContent = minutes.toString().padStart(2, '0');
+  textSeconds.textContent = seconds.toString().padStart(2, '0');
 }
 
 flatpickr('#datetime-picker', options);
